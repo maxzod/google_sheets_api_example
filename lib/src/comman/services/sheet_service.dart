@@ -21,20 +21,36 @@ const _credentials = r'''{
 
 class SheetService {
   SheetService._();
+  static final _gsheets = GSheets(_credentials);
 
   static Future<List<SheetRow>> findMany() async {
-    throw UnimplementedError();
+    // init GSheets
+    final ss = await _gsheets.spreadsheet(AppRoutes.spreadSheetId);
+    // get worksheet by its title
+    var sheet = ss.worksheetByTitle('Sheet1');
+    final rows = await sheet!.values.allRows();
+    print(rows);
+    return rows
+        .map(
+          (row) => SheetRow(
+            name: row[0],
+            email: row[1],
+            mobile: row[2],
+            modelNumber: row[3],
+            putchaseDate: DateTime.fromMillisecondsSinceEpoch(
+              int.parse(row[4]),
+            ),
+          ),
+        )
+        .toList();
   }
 
   static Future<void> createOne(CreateSheetDto dto) async {
-    // init GSheets
-    final gsheets = GSheets(_credentials);
-    // fetch spreadsheet by its id
-    final ss = await gsheets.spreadsheet(AppRoutes.spreadSheetId);
-
+    final ss = await _gsheets.spreadsheet(AppRoutes.spreadSheetId);
     // get worksheet by its title
     var sheet = ss.worksheetByTitle('Sheet1');
     final index = sheet!.rowCount + 1;
+
     await sheet.values.insertValue(
       dto.name,
       column: 1,
@@ -62,11 +78,11 @@ class SheetService {
     );
   }
 
-  static Future<void> deleteOne(SheetRow row) async {
-    throw UnimplementedError();
-  }
+  // static Future<void> deleteOne(SheetRow row) async {
+  //   throw UnimplementedError();
+  // }
 
-  static Future<void> updateOne(SheetRow row) async {
-    throw UnimplementedError();
-  }
+  // static Future<void> updateOne(SheetRow row) async {
+  //   throw UnimplementedError();
+  // }
 }

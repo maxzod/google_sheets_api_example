@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class SheetRow extends Equatable {
-  final int id;
   final String name;
   final String mobile;
   final String modelNumber;
@@ -9,7 +8,6 @@ class SheetRow extends Equatable {
   final DateTime putchaseDate;
 
   const SheetRow({
-    required this.id,
     required this.name,
     required this.mobile,
     required this.modelNumber,
@@ -20,7 +18,6 @@ class SheetRow extends Equatable {
   @override
   List<Object> get props {
     return [
-      id,
       name,
       mobile,
       modelNumber,
@@ -38,7 +35,6 @@ class SheetRow extends Equatable {
     DateTime? putchaseDate,
   }) {
     return SheetRow(
-      id: id ?? this.id,
       name: name ?? this.name,
       mobile: mobile ?? this.mobile,
       modelNumber: modelNumber ?? this.modelNumber,
@@ -49,7 +45,6 @@ class SheetRow extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'mobile': mobile,
       'modelNumber': modelNumber,
@@ -60,7 +55,6 @@ class SheetRow extends Equatable {
 
   factory SheetRow.fromMap(Map<String, dynamic> map) {
     return SheetRow(
-      id: map['id'],
       name: map['name'],
       mobile: map['mobile'],
       modelNumber: map['modelNumber'],

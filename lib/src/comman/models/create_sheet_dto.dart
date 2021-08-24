@@ -19,9 +19,9 @@ class CreateSheetDto extends Equatable {
   List<Object> get props {
     return [
       name,
+      email,
       mobile,
       modelNumber,
-      email,
       putchaseDate,
     ];
   }
