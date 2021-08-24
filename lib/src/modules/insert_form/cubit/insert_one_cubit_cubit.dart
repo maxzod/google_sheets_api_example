@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sheets_api_example/src/comman/models/create_sheet_dto.dart';
+import 'package:google_sheets_api_example/src/comman/models/sheet_row.dart';
 import 'package:google_sheets_api_example/src/comman/services/sheet_service.dart';
 
 part 'insert_one_cubit_state.dart';
@@ -45,7 +45,7 @@ class InsertOneCubitCubit extends Cubit<InsertOneCubitState> {
     try {
       emit(InsertOneLoading());
       await SheetService.createOne(
-        CreateSheetDto(
+        SheetRow(
           email: emailController.text.trim(),
           mobile: mobileController.text.trim(),
           modelNumber: modelNumberController.text.trim(),

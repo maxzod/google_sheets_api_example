@@ -1,7 +1,4 @@
-import 'dart:developer';
-
-import 'package:google_sheets_api_example/src/comman/config/routes.dart';
-import 'package:google_sheets_api_example/src/comman/models/create_sheet_dto.dart';
+import 'package:google_sheets_api_example/src/comman/config/app.dart';
 import 'package:google_sheets_api_example/src/comman/models/sheet_row.dart';
 import 'package:gsheets/gsheets.dart';
 
@@ -25,7 +22,7 @@ class SheetService {
 
   static Future<List<SheetRow>> findMany() async {
     // init GSheets
-    final ss = await _gsheets.spreadsheet(AppRoutes.spreadSheetId);
+    final ss = await _gsheets.spreadsheet(AppConfig.spreadSheetId);
     // get worksheet by its title
     var sheet = ss.worksheetByTitle('Sheet1');
     final rows = await sheet!.values.allRows();
@@ -45,10 +42,10 @@ class SheetService {
         .toList();
   }
 
-  static Future<void> createOne(CreateSheetDto dto) async {
-    final ss = await _gsheets.spreadsheet(AppRoutes.spreadSheetId);
+  static Future<void> createOne(SheetRow dto) async {
+    final ss = await _gsheets.spreadsheet(AppConfig.spreadSheetId);
     // get worksheet by its title
-    var sheet = ss.worksheetByTitle('Sheet1');
+    var sheet = ss.worksheetByTitle(AppConfig.spreadSheetName);
     final index = sheet!.rowCount + 1;
 
     await sheet.values.insertValue(
