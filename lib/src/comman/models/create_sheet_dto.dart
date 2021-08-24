@@ -1,15 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class SheetRow extends Equatable {
-  final int id;
+class CreateSheetDto extends Equatable {
   final String name;
   final String mobile;
   final String modelNumber;
   final String email;
   final DateTime putchaseDate;
 
-  const SheetRow({
-    required this.id,
+  const CreateSheetDto({
     required this.name,
     required this.mobile,
     required this.modelNumber,
@@ -20,7 +18,6 @@ class SheetRow extends Equatable {
   @override
   List<Object> get props {
     return [
-      id,
       name,
       mobile,
       modelNumber,
@@ -29,7 +26,7 @@ class SheetRow extends Equatable {
     ];
   }
 
-  SheetRow copyWith({
+  CreateSheetDto copyWith({
     int? id,
     String? name,
     String? mobile,
@@ -37,8 +34,7 @@ class SheetRow extends Equatable {
     String? email,
     DateTime? putchaseDate,
   }) {
-    return SheetRow(
-      id: id ?? this.id,
+    return CreateSheetDto(
       name: name ?? this.name,
       mobile: mobile ?? this.mobile,
       modelNumber: modelNumber ?? this.modelNumber,
@@ -49,24 +45,11 @@ class SheetRow extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'mobile': mobile,
       'modelNumber': modelNumber,
       'email': email,
       'putchaseDate': putchaseDate.millisecondsSinceEpoch,
     };
-  }
-
-  factory SheetRow.fromMap(Map<String, dynamic> map) {
-    return SheetRow(
-      id: map['id'],
-      name: map['name'],
-      mobile: map['mobile'],
-      modelNumber: map['modelNumber'],
-      email: map['email'],
-      putchaseDate:
-          DateTime.fromMillisecondsSinceEpoch(map['putchaseDate']),
-    );
   }
 }
