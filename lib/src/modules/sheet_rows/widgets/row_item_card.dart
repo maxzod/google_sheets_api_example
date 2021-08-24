@@ -10,6 +10,11 @@ class RowItemCard extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(row.name),
+        trailing: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [Text(row.mobile), Text(row.email)],
+        ),
+        subtitle: Text(row.modelNumber),
       ),
     );
   }
