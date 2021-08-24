@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       // home: SplashPage(),
-      // home: InsertFormPage(),
-      home: SheetRowsPage(),
+      home: InsertFormPage(),
+      // home: SheetRowsPage(),
     );
   }
 }

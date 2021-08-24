@@ -30,6 +30,10 @@ class InsertFormPage extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(state.msg)));
               }
+              if (state is InsertOneSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('success')));
+              }
             },
             builder: (context, state) {
               if (state is InsertOneLoading) {
