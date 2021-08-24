@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_sheets_api_example/src/modules/splash/page.dart';
 
+import 'src/modules/insert_form/page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -14,7 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: SplashPage(),
+      // home: SplashPage(),
+      home: InsertFormPage(),
     );
   }
 }
